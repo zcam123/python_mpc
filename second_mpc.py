@@ -7,7 +7,7 @@ import do_mpc
 
 #define model type and intialize
 model_type = 'discrete'
-model = do_mpc.model.Model(model_type)
+model = do_mpc.model.Model(model_type = model_type, symvar_type = "MX")
 
 #define (certain) parameters of the system
 A = np.array([
@@ -75,7 +75,8 @@ setup_mpc = {
     'n_horizon': 7, 
     't_step': time_step, #trying this value as neuron firing can be on the order of 10e-3 seconds
     'state_discretization': 'discrete',
-    'store_full_solution':True,
+    'store_full_solution':False,    
+    'store_lagr_multiplier': False,
     # Use MA27 linear solver in ipopt for faster calculations:
     #'nlpsol_opts': {'ipopt.linear_solver': 'MA27'}             #last two comments are from their documentation to revisit later
 }
